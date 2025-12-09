@@ -7,13 +7,37 @@ int main() {
 
   string s;
   cin >> s;
+  vector<int> fre(26, 0);
+  int odd = 0;
 
-  vector<int> freq(26,0);
-
-  for(int i=0;i<s.length();i++){
-    freq[s[i]-"a"]++;
+  for (auto ch : s) {
+    fre[ch - 'A']++;
   }
 
+  for (int i = 0; i < fre.size(); i++) {
+    if (fre[i] % 2 != 0) {
+      odd++;
+    }
+  }
+  string l = "";
+  string r = "";
+  string m = "";
+  if (odd > 1) {
+    cout << "NO SOLUTION";
+    return 0;
+  }
+  for (int i = 0; i < fre.size(); i++) {
+    char c = i + 'A';
+    if(fre[i]%2!=0){
+      m += c;
+    }
 
+    int half = fre[i] / 2;
+    l += string(half, c);
+    r += string(half, c);
+  }
+
+  reverse(r.begin(), r.end());
+  cout << l + m + r;
   return 0;
 }

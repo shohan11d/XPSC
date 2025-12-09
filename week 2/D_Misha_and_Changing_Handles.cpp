@@ -5,20 +5,17 @@ int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n;
-  cin >> n;
+  string s;
+  cin >> s;
+  vector<int> fre(26, 0);
 
-  string str;
-  string str2;
-  for (int i = 0; i < n; i++)
-  {
-    cin >> str;
-    cin >> str2;
-
+  for (auto ch : s) {
+    fre[ch - 'A']++;
   }
 
-
-
+  for (int i = 0; i < fre.size(); i++) {
+    cout << fre[i];
+  }
 
   return 0;
 }
